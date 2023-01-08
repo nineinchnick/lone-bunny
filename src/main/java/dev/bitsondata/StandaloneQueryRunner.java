@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.trino;
+package dev.bitsondata;
 
 import io.airlift.log.Level;
 import io.airlift.log.Logger;
@@ -92,12 +92,16 @@ public final class StandaloneQueryRunner
             throws Exception
     {
         Logging logging = Logging.initialize();
+        logging.setLevel("io.airlift", Level.ERROR);
+        logging.setLevel("io.trino", Level.ERROR);
+        logging.setLevel("org.eclipse", Level.ERROR);
         logging.setLevel("io.trino.plugin", Level.DEBUG);
         logging.setLevel("io.trino.spi", Level.DEBUG);
+        logging.setLevel("dev.bitsondata", Level.INFO);
 
-        EmbeddedServer server = createServer(
-                Map.of("http-server.http.port", requireNonNullElse(System.getenv("TRINO_PORT"), "8080")),
-                Map.of("metadata-uri", requireNonNull(System.getenv("TRINO_GIT_URL"))));
+        Map<String, String> extraProperties = Map.of("http-server.http.port", requireNonNullElse(System.getenv("TRINO_PORT"), "8080"));
+        Map<String, String> connectorProperties = Map.of();
+        EmbeddedServer server = createServer(extraProperties, connectorProperties);
 
         Logger log = Logger.get(EmbeddedServer.class);
         log.info("======== SERVER STARTED ========");

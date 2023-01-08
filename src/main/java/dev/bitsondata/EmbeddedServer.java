@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.trino;
+package dev.bitsondata;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -360,7 +360,6 @@ public class EmbeddedServer
         public EmbeddedServer build()
                 throws Exception
         {
-
             return new EmbeddedServer(
                     defaultSession,
                     nodeCount,
