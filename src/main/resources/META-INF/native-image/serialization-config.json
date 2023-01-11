@@ -1,0 +1,11 @@
+{
+  "types":[
+    {
+      "name":"org.openjdk.jol.vm.sa.Request"
+    }
+  ],
+  "lambdaCapturingTypes":[
+  ],
+  "proxies":[
+  ]
+}
