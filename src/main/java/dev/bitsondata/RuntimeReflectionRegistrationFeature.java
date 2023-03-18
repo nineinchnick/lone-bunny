@@ -36,6 +36,7 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class RuntimeReflectionRegistrationFeature
+        implements Feature
 {
     public void beforeAnalysis(Feature.BeforeAnalysisAccess access)
     {

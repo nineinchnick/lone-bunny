@@ -1,0 +1,10 @@
+{
+  "resources": {
+    "includes": [
+      {"pattern": ".*zone-index.properties$"}
+    ],
+    "excludes": [
+      {"pattern": ".*class$"}
+    ]
+  }
+}

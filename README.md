@@ -14,5 +14,6 @@ or without a container:
 ```bash
 LB_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
 mvn clean install
-native-image --no-fallback -H:+AddAllCharsets -jar target/lone-bunny-"$LB_VERSION"-shaded.jar
+CLASSPATH=$(mvn dependency:build-classpath -Dmdep.includeScope=runtime -Dmdep.outputFile=/dev/stdout -q)
+native-image --no-fallback -jar target/lone-bunny-"$LB_VERSION".jar -cp "$CLASSPATH"
 ```
