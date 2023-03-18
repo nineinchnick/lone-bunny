@@ -6,5 +6,13 @@ A testbed for a standalone Trino instance
 To build a native image:
 
 ```bash
-podman build --build-arg LB_VERSION=0.1-SNAPSHOT -t lone-bunny:0.1-SNAPSHOT .
+LB_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+podman build --build-arg LB_VERSION="$LB_VERSION" -t lone-bunny:"$LB_VERSION" .
+```
+
+or without a container:
+```bash
+LB_VERSION=$(./mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+mvn clean install
+native-image --no-fallback -H:+AddAllCharsets -jar target/lone-bunny-"$LB_VERSION"-shaded.jar
 ```

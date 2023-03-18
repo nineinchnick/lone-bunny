@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM ghcr.io/graalvm/graalvm-ce:ol9-java17-22.3.0 AS build
+FROM ghcr.io/graalvm/graalvm-ce:ol9-java17-22.3.1 AS build
 
 # install musl-libc and zlib
 # TODO need to pin version - fetch https://musl.libc.org/releases/musl-1.2.2.tar.gz and build it, install binutils, gmp, mpfr, mpc

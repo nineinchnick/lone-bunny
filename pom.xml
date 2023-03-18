@@ -12,7 +12,7 @@
     <parent>
         <groupId>io.airlift</groupId>
         <artifactId>airbase</artifactId>
-        <version>130</version>
+        <version>134</version>
     </parent>
 
     <licenses>
@@ -24,24 +24,23 @@
     </licenses>
 
     <properties>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
         <main-class>dev.bitsondata.StandaloneQueryRunner</main-class>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.targetJdk>17</project.build.targetJdk>
-        <air.java.version>17.0.4</air.java.version>
+        <air.java.version>17.0.6</air.java.version>
 
         <air.main.basedir>${project.basedir}</air.main.basedir>
 
-        <dep.trino.version>405</dep.trino.version>
-        <dep.airlift.version>219</dep.airlift.version>
+        <dep.trino.version>410</dep.trino.version>
+        <dep.airlift.version>225</dep.airlift.version>
         <dep.packaging.version>${dep.airlift.version}</dep.packaging.version>
-        <dep.errorprone.version>2.16</dep.errorprone.version>
-        <dep.jackson.version>2.14.1</dep.jackson.version>
+        <dep.errorprone.version>2.18.0</dep.errorprone.version>
+        <dep.jackson.version>2.14.2</dep.jackson.version>
         <dep.testng.version>7.7.1</dep.testng.version>
         <dep.joda.version>2.12.2</dep.joda.version>
-        <dep.picocli.version>4.7.0</dep.picocli.version>
+        <dep.picocli.version>4.7.1</dep.picocli.version>
     </properties>
 
     <dependencyManagement>
@@ -49,17 +48,29 @@
             <dependency>
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy</artifactId>
-                <version>1.12.13</version>
+                <version>1.14.2</version>
             </dependency>
             <dependency>
                 <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna</artifactId>
-                <version>5.12.1</version>
+                <version>5.13.0</version>
             </dependency>
             <dependency>
                 <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna-platform</artifactId>
-                <version>5.12.1</version>
+                <version>5.13.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.airlift</groupId>
+                <artifactId>slice</artifactId>
+                <version>0.45</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.weakref</groupId>
+                <artifactId>jmxutils</artifactId>
+                <version>1.22</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -116,40 +127,40 @@
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>
-            <version>22.3.0</version>
+            <version>22.3.1</version>
         </dependency>
 
-            <!-- Airlift -->
-            <dependency>
-                <groupId>io.airlift</groupId>
-                <artifactId>log</artifactId>
-                <version>${dep.airlift.version}</version>
-            </dependency>
+        <!-- Airlift -->
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>log</artifactId>
+            <version>${dep.airlift.version}</version>
+        </dependency>
 
-            <dependency>
-                <groupId>io.airlift</groupId>
-                <artifactId>log-manager</artifactId>
-                <version>${dep.airlift.version}</version>
-            </dependency>
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>log-manager</artifactId>
+            <version>${dep.airlift.version}</version>
+        </dependency>
 
-            <dependency>
-                <groupId>io.airlift</groupId>
-                <artifactId>testing</artifactId>
-                <version>${dep.airlift.version}</version>
-                <scope>testing</scope>
-            </dependency>
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>testing</artifactId>
+            <version>${dep.airlift.version}</version>
+            <scope>testing</scope>
+        </dependency>
 
-            <dependency>
-                <groupId>io.airlift</groupId>
-                <artifactId>units</artifactId>
-                <version>1.7</version>
-            </dependency>
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>units</artifactId>
+            <version>1.7</version>
+        </dependency>
 
-            <dependency>
-                <groupId>io.airlift.discovery</groupId>
-                <artifactId>discovery-server</artifactId>
-                <version>1.30</version>
-            </dependency>
+        <dependency>
+            <groupId>io.airlift.discovery</groupId>
+            <artifactId>discovery-server</artifactId>
+            <version>1.32</version>
+        </dependency>
 
         <!-- for testing -->
         <dependency>
@@ -169,14 +180,14 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>3.5.0</version>
+            <version>3.5.1</version>
                 <scope>testing</scope>
         </dependency>
 
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.23.1</version>
+            <version>3.24.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -211,6 +222,7 @@
             <plugin>
                 <groupId>org.skife.maven</groupId>
                 <artifactId>really-executable-jar-maven-plugin</artifactId>
+                <version>2.1.1</version>
                 <configuration>
                     <flags>-Xmx1G</flags>
                 </configuration>

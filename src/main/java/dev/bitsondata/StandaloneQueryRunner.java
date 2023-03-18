@@ -105,7 +105,7 @@ public final class StandaloneQueryRunner
 
         Logger log = Logger.get(EmbeddedServer.class);
         log.info("======== SERVER STARTED ========");
-        log.info("\n====\n%s\n====", server.getCoordinator().getBaseUrl());
+        log.info("\n====\n%s\n====", server.getCoordinatorUri());
 
         int exitCode = createCommandLine(new Console()).execute(args);
         server.close();

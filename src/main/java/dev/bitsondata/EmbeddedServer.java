@@ -270,9 +270,9 @@ public class EmbeddedServer
         }
     }
 
-    public TestingTrinoServer getCoordinator()
+    public URI getCoordinatorUri()
     {
-        return coordinator;
+        return coordinator.getBaseUrl();
     }
 
     public void installPlugin(Plugin plugin)
@@ -323,7 +323,7 @@ public class EmbeddedServer
             return self();
         }
 
-        public SELF setCoordinatorProperties(Map<String, String> coordinatorProperties)
+        private SELF setCoordinatorProperties(Map<String, String> coordinatorProperties)
         {
             this.coordinatorProperties = coordinatorProperties;
             return self();
